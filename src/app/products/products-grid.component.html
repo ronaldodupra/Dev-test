@@ -1,27 +1,22 @@
 <table>
   <thead>
     <tr>
-      <th>
-        Id
-      </th>
-      <th>
-        Name
-      </th>
-      <th>
-        Brand
-      </th>
-      <th>
-        Price
-      </th>
-      <th>
-        Quantity
-      </th>
-      <th>
-        Description
-      </th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
-
+    <tr *ngFor="let product of products">
+      <th>{{ product.id }}</th>
+      <th>{{ product.name }}</th>
+      <th>{{ product.brand }}</th>
+      <th>{{ product.price }}</th>
+      <th>{{ product.quantity }}</th>
+      <th>{{ product.description }}</th>
+    </tr>
   </tbody>
 </table>
