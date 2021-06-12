@@ -120,7 +120,11 @@
     </div>
     <div class="filter">
       <label for="brands">Brands</label>
-      <select id="brands"></select>
+      <select id="brands">
+        <option [value]="item.brand" *ngFor="let item of brands">
+          {{ item.brand }}
+        </option>
+      </select>
     </div>
     <div class="filter">
       <label for="in-stock">All</label>
