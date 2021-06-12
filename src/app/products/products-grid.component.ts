@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
 import { ProductShared } from "../shared/product.shared";
 import { ProductsService } from "./products.service";
 
@@ -10,13 +11,14 @@ import { ProductsService } from "./products.service";
 })
 export class ProductsGridComponent implements OnInit {
   constructor(private productService: ProductsService) {}
-  products: ProductShared[];
-  ngOnInit(): void {
-    this.loadProducts();
-  }
-  private loadProducts() {
-    this.productService.getProducts().subscribe((result) => {
-      this.products = result;
-    });
-  }
+  @Input() dataSource: MatTableDataSource<ProductShared>[];
+  displayedColumns = [
+    "id",
+    "name",
+    "brand",
+    "price",
+    "quantity",
+    "description",
+  ];
+  ngOnInit(): void {}
 }

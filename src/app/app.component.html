@@ -113,29 +113,51 @@
 
 <div class="content" role="main">
   <h2>Products</h2>
+  <form [formGroup]="filterForm">
+    <div class="container">
+      <div class="filter">
+        <label for="search">Search</label>
+        <input formControlName="textFilter" />
+      </div>
+      <div class="filter">
+        <label for="brands">Brands</label>
+        <select formControlName="brandFilter">
+          <option [value]="item.brand" *ngFor="let item of brands">
+            {{ item.brand }}
+          </option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="in-stock">All</label>
+        <input
+          checked
+          aria-checked="true"
+          type="radio"
+          id="all"
+          name="stocksFilter"
+          value="all"
+          formControlName="stocksFilter"
+        />
+        <label for="in-stock">In stock</label>
+        <input
+          type="radio"
+          id="in-stock"
+          formControlName="stocksFilter"
+          name="stocksFilter"
+          value="in-stock"
+        />
+        <label for="out-of-stock">Out of stock</label>
+        <input
+          type="radio"
+          id="out-of-stock"
+          formControlName="stocksFilter"
+          name="stocksFilter"
+          value="out-of-stock"
+        />
+      </div>
+    </div>
+  </form>
   <div class="container">
-    <div class="filter">
-      <label for="search">Search</label>
-      <input id="search" />
-    </div>
-    <div class="filter">
-      <label for="brands">Brands</label>
-      <select id="brands">
-        <option [value]="item.brand" *ngFor="let item of brands">
-          {{ item.brand }}
-        </option>
-      </select>
-    </div>
-    <div class="filter">
-      <label for="in-stock">All</label>
-      <input type="radio" id="in-stock" name="stock" value="all" checked />
-      <label for="in-stock">In stock</label>
-      <input type="radio" id="in-stock" name="stock" value="in-stock" />
-      <label for="out-of-stock">Out of stock</label>
-      <input type="radio" id="out-of-stock" name="stock" value="out-of-stock" />
-    </div>
-  </div>
-  <div class="container">
-    <products-table> </products-table>
+    <products-table [dataSource]="dataSource"> </products-table>
   </div>
 </div>
