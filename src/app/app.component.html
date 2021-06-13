@@ -119,7 +119,12 @@
       <div class="filter w-1-3 p-2">
         <mat-form-field class="w-full">
           <mat-label>Search</mat-label>
-          <input matInput type="text" formControlName="textFilter" />
+          <input
+            matInput
+            type="text"
+            autocomplete="off"
+            formControlName="textFilter"
+          />
         </mat-form-field>
       </div>
       <div class="filter w-1-3 p-2">
@@ -164,7 +169,7 @@
       </div>
     </div>
   </form>
-  <div class="container">
+  <div class="w-full">
     <products-table [dataSource]="dataSource"> </products-table>
   </div>
 </div>
