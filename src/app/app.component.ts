@@ -20,17 +20,12 @@ export class AppComponent implements OnInit {
   // none value
   filterValues = {
     textFilter: "",
-    brandFilter: "",
-    stocksFilter: "all",
-  };
-  filterValuesNULL = {
-    textFilter: "",
-    brandFilter: "",
+    brandFilter: "all",
     stocksFilter: "all",
   };
   filterForm: FormGroup = this.fb.group({
     textFilter: [],
-    brandFilter: [],
+    brandFilter: ["all"],
     stocksFilter: ["all"],
   });
 
@@ -103,6 +98,12 @@ export class AppComponent implements OnInit {
       } else {
         stockquantity = data.quantity > 0;
       }
+      var brand;
+      if (searchString.brandFilter == "all") {
+        brand = "";
+      } else {
+        brand = searchString.brandFilter.toLowerCase();
+      }
       const resultValue =
         (data.name
           .toString()
@@ -119,11 +120,7 @@ export class AppComponent implements OnInit {
             .trim()
             .toLowerCase()
             .indexOf(searchString.textFilter.toLowerCase()) !== -1) &&
-        data.brand
-          .toString()
-          .trim()
-          .toLowerCase()
-          .indexOf(searchString.brandFilter.toLowerCase()) !== -1 &&
+        data.brand.toString().trim().toLowerCase().indexOf(brand) !== -1 &&
         stockquantity; // => false;
 
       return resultValue;
